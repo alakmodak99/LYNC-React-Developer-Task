@@ -76,12 +76,13 @@ const OnlineDrive = () => {
       setSelectedItem(null);
     }
   };
+  // console.log(fileSystem, '---->')
   return (
     <div className="h-screen flex">
       <div className="w-64 border-r p-4">
         <h2 className="text-lg font-semibold mb-4">Files</h2>
         <div className="space-y-2">
-          {Object.values(fileSystem?.root?.children)?.map((item) => (
+          {Object?.values(fileSystem?.root?.children)?.map((item) => (
             <Item
               key={item?.id}
               item={item}

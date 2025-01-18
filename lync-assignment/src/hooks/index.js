@@ -141,13 +141,13 @@ const useFileSystem = () => {
   );
 
   const navigateToFolder = useCallback((id) => {
-    setCurrentPath((prev) => [...prev, id]);
+    setCurrentPath((prev) => [...new Set([...prev, id])]);
     setSelectedItem(null);
   }, []);
 
   const navigateBack = useCallback(() => {
     if (currentPath.length > 1) {
-      setCurrentPath((prev) => prev.slice(0, -1));
+      setCurrentPath((prev) => prev?.slice(0, -1));
       setSelectedItem(null);
     }
   }, [currentPath]);
@@ -156,13 +156,13 @@ const useFileSystem = () => {
     (term) => {
       const results = [];
       const search = (folderId, path) => {
-        const folder = fileSystem[folderId];
-        Object.values(folder.children).forEach((item) => {
-          if (item.name.toLowerCase().includes(term.toLowerCase())) {
+        const folder = fileSystem?.[folderId];
+        Object.values(folder?.children)?.forEach((item) => {
+          if (item.name?.toLowerCase()?.includes(term?.toLowerCase())) {
             results.push({ ...item, path });
           }
-          if (item.type === "folder") {
-            search(item.id, [...path, item.name]);
+          if (item?.type === "folder") {
+            search(item?.id, [...path, item.name]);
           }
         });
       };
