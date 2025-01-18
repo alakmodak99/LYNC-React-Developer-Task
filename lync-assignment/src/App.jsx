@@ -1,8 +1,8 @@
 import './App.css';
-import OnlineDrive from './components/home';
+import Drive from './components/home';
 function App() {
   return (
-     <OnlineDrive/>
+     <Drive/>
   );
 }
 

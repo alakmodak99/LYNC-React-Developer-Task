@@ -5,7 +5,6 @@ const useFileSystem = () => {
     const saved = localStorage.getItem("fileSystem");
     return saved ? JSON.parse(saved) : INITIAL_FILE_SYSTEM;
   });
-
   const [currentPath, setCurrentPath] = useState(["root"]);
   const [selectedItem, setSelectedItem] = useState(null);
   const [error, setError] = useState(null);
@@ -29,8 +28,6 @@ const useFileSystem = () => {
   const createItem = useCallback(
     (name, type) => {
       const currentFolder = currentPath?.[currentPath?.length - 1];
-      const newId = generateId();
-      const timestamp = Date.now();
 
       const isDuplicate = Object?.values(
         fileSystem?.[currentFolder].children
@@ -40,6 +37,9 @@ const useFileSystem = () => {
         handleError("An item with this name already exists");
         return false;
       }
+
+      const newId = generateId(); // unique id
+      const timestamp = Date.now(); 
 
       setFileSystem((prev) => ({
         ...prev,

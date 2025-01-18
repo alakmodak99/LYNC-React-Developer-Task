@@ -1,70 +1,96 @@
-# Getting Started with Create React App
+# Online Drive
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A React-based file management system with features similar to Google Drive.
 
-## Available Scripts
+## Features
 
-In the project directory, you can run:
+- Create, delete, and rename files/folders
+- Navigate through folder hierarchy
+- Breadcrumb navigation
+- File/folder search
+- Grid/List view toggle
+- Persistent storage
+- Keyboard accessibility
+- Modified timestamps
 
-### `npm start`
+## Tech Stack
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+- React (Hooks)
+- ShadcnUI components
+- Lucide Icons
+- LocalStorage for persistence
+- TailwindCSS
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Installation
 
-### `npm test`
+```bash
+npm install
+# Required shadcn/ui components
+npm install @radix-ui/react-dialog
+npm install @radix-ui/react-alert
+```
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Usage
 
-### `npm run build`
+```jsx
+import Drive from './components/home';
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+function App() {
+  return <Drive />;
+}
+```
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## Component Structure
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+- `Drive`: Main component
+- `useFileSystem`: Custom hook for file system operations
+- `Breadcrumb`: Navigation component
+- `Item`: File/folder display component
+- `SearchResults`: Search results display
 
-### `npm run eject`
+## File System Structure
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+```javascript
+{
+  root: {
+    id: string,
+    name: string,
+    type: 'folder',
+    children: Object,
+    parent: string | null,
+    createdAt: number,
+    modifiedAt: number
+  }
+}
+```
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## Key Features
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+### File Operations
+- Create files/folders
+- Delete with recursive folder deletion
+- Rename with duplicate prevention
+- Double-click navigation
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+### UI Features
+- Responsive grid/list layouts
+- Search functionality
+- Error notifications
+- Keyboard navigation
+- Modified timestamps
 
-## Learn More
+### Data Persistence
+- Automatic local storage saving
+- State restoration on page reload
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+## Security Features
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+- Path traversal prevention
+- Duplicate name validation
+- Recursive deletion safety
 
-### Code Splitting
+## Performance Optimizations
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+- Memoized callbacks
+- Computed value memoization
+- Efficient state updates
